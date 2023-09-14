@@ -6,3 +6,6 @@ export const pwm2_store = writable(0);
 export const pwm3_store = writable(0);
 export const pwm4_store = writable(0);
 export const pwm5_store = writable(0);
+
+export const vel_linear = writable(0);
+export const vel_angular = writable(0);
