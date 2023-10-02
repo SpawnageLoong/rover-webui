@@ -1,35 +1,33 @@
 <script lang="js">
   import ROSLIB from 'roslib';
-  import { pwm0_store, pwm1_store, pwm2_store,
-           pwm3_store, pwm4_store, pwm5_store,
-           vel_linear, vel_angular } from '$lib/stores.js';
+  import * as stores from '$lib/stores.js';
 
   // Stores management
   // -----------------
 
   let pwm0, pwm1, pwm2, pwm3, pwm4, pwm5, v_lin, v_ang = 0;
-  pwm0_store.subscribe(value => {
+  stores.pwm0.subscribe(value => {
     pwm0 = value;
   });
-  pwm1_store.subscribe(value => {
+  stores.pwm1.subscribe(value => {
     pwm1 = value;
   });
-  pwm2_store.subscribe(value => {
+  stores.pwm2.subscribe(value => {
     pwm2 = value;
   });
-  pwm3_store.subscribe(value => {
+  stores.pwm3.subscribe(value => {
     pwm3 = value;
   });
-  pwm4_store.subscribe(value => {
+  stores.pwm4.subscribe(value => {
     pwm4 = value;
   });
-  pwm5_store.subscribe(value => {
+  stores.pwm5.subscribe(value => {
     pwm5 = value;
   });
-  vel_linear.subscribe(value => {
+  stores.vel_linear.subscribe(value => {
     v_lin = value;
   });
-  vel_angular.subscribe(value => {
+  stores.vel_angular.subscribe(value => {
     v_ang = value;
   });
 
@@ -93,32 +91,32 @@
 
   pwm0_subscriber.subscribe(function(message) {
     // console.log('Received message on ' + pwm0_subscriber.name + ': ' + message.data);
-    pwm0_store.set(message.data);
+    stores.pwm0.set(message.data);
   });
   pwm1_subscriber.subscribe(function(message) {
     // console.log('Received message on ' + pwm1_subscriber.name + ': ' + message.data);
-    pwm1_store.set(message.data);
+    stores.pwm1.set(message.data);
   });
   pwm2_subscriber.subscribe(function(message) {
     // console.log('Received message on ' + pwm2_subscriber.name + ': ' + message.data);
-    pwm2_store.set(message.data);
+    stores.pwm2.set(message.data);
   });
   pwm3_subscriber.subscribe(function(message) {
     // console.log('Received message on ' + pwm3_subscriber.name + ': ' + message.data);
-    pwm3_store.set(message.data);
+    stores.pwm3.set(message.data);
   });
   pwm4_subscriber.subscribe(function(message) {
     // console.log('Received message on ' + pwm4_subscriber.name + ': ' + message.data);
-    pwm4_store.set(message.data);
+    stores.pwm4.set(message.data);
   });
   pwm5_subscriber.subscribe(function(message) {
     // console.log('Received message on ' + pwm5_subscriber.name + ': ' + message.data);
-    pwm5_store.set(message.data);
+    stores.pwm5.set(message.data);
   });
   cmd_vel_subscriber.subscribe(function(message) {
     // console.log('Received message on ' + cmd_vel_subscriber.name + ': ' + message.data);
-    vel_linear.set(message.linear.x);
-    vel_angular.set(message.angular.z);
+    stores.vel_linear.set(message.linear.x);
+    stores.vel_angular.set(message.angular.z);
   });
 
 </script>
