@@ -5,7 +5,13 @@
   // Stores management
   // -----------------
 
-  let pwm0, pwm1, pwm2, pwm3, pwm4, pwm5, v_lin, v_ang = 0;
+  let pwm0, pwm1, pwm2, pwm3, pwm4, pwm5,
+      v_lin, v_ang, ext_temp0, int_temp0,
+      int_temp1, int_temp2, int_hum0,
+      int_hum1, int_hum2, int_pres0, alt0,
+      accel_x, accel_y, accel_z,
+      gyro_x, gyro_y, gyro_z,
+      mag_x, mag_y, mag_z, imu_temp = 0;
   stores.pwm0.subscribe(value => {
     pwm0 = value;
   });
@@ -29,6 +35,63 @@
   });
   stores.vel_angular.subscribe(value => {
     v_ang = value;
+  });
+  stores.ext_temp0.subscribe(value => {
+    ext_temp0 = value;
+  });
+  stores.int_temp0.subscribe(value => {
+    int_temp0 = value;
+  });
+  stores.int_temp1.subscribe(value => {
+    int_temp1 = value;
+  });
+  stores.int_temp2.subscribe(value => {
+    int_temp2 = value;
+  });
+  stores.int_hum0.subscribe(value => {
+    int_hum0 = value;
+  });
+  stores.int_hum1.subscribe(value => {
+    int_hum1 = value;
+  });
+  stores.int_hum2.subscribe(value => {
+    int_hum2 = value;
+  });
+  stores.int_pres0.subscribe(value => {
+    int_pres0 = value;
+  });
+  stores.alt0.subscribe(value => {
+    alt0 = value;
+  });
+  stores.accel_x.subscribe(value => {
+    accel_x = value;
+  });
+  stores.accel_y.subscribe(value => {
+    accel_y = value;
+  });
+  stores.accel_z.subscribe(value => {
+    accel_z = value;
+  });
+  stores.gyro_x.subscribe(value => {
+    gyro_x = value;
+  });
+  stores.gyro_y.subscribe(value => {
+    gyro_y = value;
+  });
+  stores.gyro_z.subscribe(value => {
+    gyro_z = value;
+  });
+  stores.mag_x.subscribe(value => {
+    mag_x = value;
+  });
+  stores.mag_y.subscribe(value => {
+    mag_y = value;
+  });
+  stores.mag_z.subscribe(value => {
+    mag_z = value;
+  });
+  stores.imu_temp.subscribe(value => {
+    imu_temp = value;
   });
 
   // Connecting to ROS
