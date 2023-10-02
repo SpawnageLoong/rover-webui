@@ -1,5 +1,11 @@
 <script lang="js">
-  import * as stores from '$lib/stores.js';
+  import { pwm0, pwm1, pwm2, pwm3, pwm4, pwm5,
+           vel_angular, vel_linear, ext_temp0,
+           int_temp0, int_temp1, int_temp2,
+           int_hum0, int_hum1, int_hum2, int_pres0,
+           alt0, accel_x, accel_y, accel_z,
+           gyro_x, gyro_y, gyro_z, mag_x, mag_y,
+           mag_z, imu_temp } from '$lib/stores.js';
 
 </script>
 
@@ -8,42 +14,42 @@
 
 Target Velocities:
 <ul>
-  <li>Linear: {stores.vel_linear}</li>
-  <li>Angular: {stores.vel_angular}</li>
+  <li>Linear: {$vel_angular}</li>
+  <li>Angular: {$vel_angular}</li>
 </ul>
 <br>
 
 PWM Values:
 <ul>
-  <li>PWM 0: {stores.pwm0}</li>
-  <li>PWM 1: {stores.pwm1}</li>
-  <li>PWM 2: {stores.pwm2}</li>
-  <li>PWM 3: {stores.pwm3}</li>
-  <li>PWM 4: {stores.pwm4}</li>
-  <li>PWM 5: {stores.pwm5}</li>
+  <li>PWM 0: {$pwm0}</li>
+  <li>PWM 1: {$pwm1}</li>
+  <li>PWM 2: {$pwm2}</li>
+  <li>PWM 3: {$pwm3}</li>
+  <li>PWM 4: {$pwm4}</li>
+  <li>PWM 5: {$pwm5}</li>
 </ul>
 <br>
 
 Telemetry:
 <ul>
-  <li>External Temperature: {stores.ext_temp0}</li>
-  <li>Internal Temperature 0: {stores.int_temp0}</li>
-  <li>Internal Temperature 1: {stores.int_temp1}</li>
-  <li>Internal Temperature 2: {stores.int_temp2}</li>
-  <li>Internal Temperature 3: {stores.imu_temp}</li>
-  <li>Internal Humidity 0: {stores.int_hum0}</li>
-  <li>Internal Humidity 1: {stores.int_hum1}</li>
-  <li>Internal Humidity 2: {stores.int_hum2}</li>
-  <li>Internal Pressure 0: {stores.int_pres0}</li>
-  <li>Altitude 0: {stores.alt0}</li>
+  <li>External Temperature: {$ext_temp0}</li>
+  <li>Internal Temperature 0: {$int_temp0}</li>
+  <li>Internal Temperature 1: {$int_temp1}</li>
+  <li>Internal Temperature 2: {$int_temp2}</li>
+  <li>Internal Temperature 3: {$imu_temp}</li>
+  <li>Internal Humidity 0: {$int_hum0}</li>
+  <li>Internal Humidity 1: {$int_hum1}</li>
+  <li>Internal Humidity 2: {$int_hum2}</li>
+  <li>Internal Pressure 0: {$int_pres0}</li>
+  <li>Altitude 0: {$alt0}</li>
   <br>
-  <li>Acceleration X: {stores.accel_x}</li>
-  <li>Acceleration Y: {stores.accel_y}</li>
-  <li>Acceleration Z: {stores.accel_z}</li>
-  <li>Gyro X: {stores.gyro_x}</li>
-  <li>Gyro Y: {stores.gyro_y}</li>
-  <li>Gyro Z: {stores.gyro_z}</li>
-  <li>Magnetometer X: {stores.mag_x}</li>
-  <li>Magnetometer Y: {stores.mag_y}</li>
-  <li>Magnetometer Z: {stores.mag_z}</li>
+  <li>Acceleration X: {$accel_x}</li>
+  <li>Acceleration Y: {$accel_y}</li>
+  <li>Acceleration Z: {$accel_z}</li>
+  <li>Gyro X: {$gyro_x}</li>
+  <li>Gyro Y: {$gyro_y}</li>
+  <li>Gyro Z: {$gyro_z}</li>
+  <li>Magnetometer X: {$mag_x}</li>
+  <li>Magnetometer Y: {$mag_y}</li>
+  <li>Magnetometer Z: {$mag_z}</li>
 </ul>
