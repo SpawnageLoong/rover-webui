@@ -1,6 +1,8 @@
 import { writable } from "svelte/store";
 import ROSLIB from "roslib";
 
+export const host = writable("192.168.1.168")
+
 export const pwm0 = writable(0);
 export const pwm1 = writable(0);
 export const pwm2 = writable(0);
@@ -149,4 +151,3 @@ ros.on('close', function() {
     mag_z.set(message.mag_z);
     imu_temp.set(message.int_temp3);
   })
-  

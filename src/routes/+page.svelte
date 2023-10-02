@@ -1,5 +1,5 @@
 <script lang="js">
-  import { pwm0, pwm1, pwm2, pwm3, pwm4, pwm5,
+  import { host, pwm0, pwm1, pwm2, pwm3, pwm4, pwm5,
            vel_angular, vel_linear, ext_temp0,
            int_temp0, int_temp1, int_temp2,
            int_hum0, int_hum1, int_hum2, int_pres0,
@@ -7,9 +7,16 @@
            gyro_x, gyro_y, gyro_z, mag_x, mag_y,
            mag_z, imu_temp } from '$lib/stores.js';
 
+  import { onMount } from 'svelte';
+
+  onMount(() => {
+    host.set(window.location.hostname)
+  })
 </script>
 
 <h1>Simple UI</h1>
+Host Name: {$host}
+<br>
 
 Target Velocities:
 <ul>
