@@ -148,6 +148,11 @@
     name : '/cmd_vel',
     messageType : 'geometry_msgs/Twist'
   });
+  var sensor_subscriber = new ROSLIB.Topic({
+    ros : ros,
+    name : '/sensor_data',
+    messageType : 'rover_interfaces/SensorData'
+  });
 
   // Subscriber callbacks
   // --------------------
@@ -181,6 +186,28 @@
     stores.vel_linear.set(message.linear.x);
     stores.vel_angular.set(message.angular.z);
   });
+  sensor_subscriber.subscribe(function(message) {
+    // console.log('Received message on ' + sensor_subscriber.name);
+    stores.ext_temp0.set(message.ext_temp0);
+    stores.int_temp0.set(message.int_temp0);
+    stores.int_temp1.set(message.int_temp1);
+    stores.int_temp2.set(message.int_temp2);
+    stores.int_hum0.set(message.int_hum0);
+    stores.int_hum1.set(message.int_hum1);
+    stores.int_hum2.set(message.int_hum2);
+    stores.int_pres0.set(message.int_pres0);
+    stores.alt0.set(message.int_alt);
+    stores.accel_x.set(message.accel_x);
+    stores.accel_y.set(message.accel_y);
+    stores.accel_z.set(message.accel_z);
+    stores.gyro_x.set(message.gyro_x);
+    stores.gyro_y.set(message.gyro_y);
+    stores.gyro_z.set(message.gyro_z);
+    stores.mag_x.set(message.mag_x);
+    stores.mag_y.set(message.mag_y);
+    stores.mag_z.set(message.mag_z);
+    stores.imu_temp.set(message.int_temp3);
+  })
 
 </script>
 
