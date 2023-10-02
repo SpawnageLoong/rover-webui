@@ -9,12 +9,11 @@
 
 </script>
 
-<h1>Simple roslib Example</h1>
-<p>Check your Web Console for output.</p>
+<h1>Simple UI</h1>
 
 Target Velocities:
 <ul>
-  <li>Linear: {$vel_angular}</li>
+  <li>Linear: {$vel_linear}</li>
   <li>Angular: {$vel_angular}</li>
 </ul>
 <br>
