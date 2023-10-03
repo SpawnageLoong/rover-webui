@@ -2,6 +2,7 @@ import { writable } from "svelte/store";
 import ROSLIB from "roslib";
 
 export const host = writable("192.168.1.168")
+export const rosConnection = writable(false);
 
 export const pwm0 = writable(0);
 export const pwm1 = writable(0);
@@ -36,7 +37,6 @@ export const imu_temp = writable(0);
 
 // Connecting to ROS
 // -----------------
-export const rosConnection = writable(false);
 var ros = new ROSLIB.Ros({
     url : 'ws://192.168.1.168:9090'
 });

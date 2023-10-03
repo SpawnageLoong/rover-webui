@@ -1,4 +1,5 @@
 <script lang=js>
+    import {host, rosConnection} from "$lib/stores.js"
     let dropdown = false;
 
     function handleDropdownOpen() {
@@ -18,4 +19,12 @@
             Endeavour OS
         </div>
     </a>
+    <div class="flex flex-row-reverse absolute top-0 right-0 m-1 items-center gap-2">
+        <div class="p-2 rounded-md text-center text-white hover:bg-gray-600">
+            Robridge Status: {$rosConnection ? "Connected" : "Not Connected"}
+        </div>
+        <div class="p-2 rounded-md text-center text-white hover:bg-gray-600">
+            Host: {$host}
+        </div>
+    </div>
 </div>
