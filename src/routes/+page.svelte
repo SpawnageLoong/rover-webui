@@ -20,7 +20,7 @@
 </div>
 
 <div class="flex m-4">
-  <div class="flex-auto">
+  <div class="flex-auto bg-gray-600">
     <img
       src="http://{$host}:8081"
       width="960"

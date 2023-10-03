@@ -5,7 +5,7 @@
   
 <html lang="en">
     <Navbar />
-    <div class="mt-12 mb-16 w-full items-center bg-background min-h-[calc(100vh-112px)]">
+    <div class="mt-12 w-full items-center bg-gray-800 min-h-[calc(100vh-48px)]">
       <slot />
     </div>
 </html>
