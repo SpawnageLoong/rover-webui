@@ -11,6 +11,10 @@ export const pwm3 = writable(0);
 export const pwm4 = writable(0);
 export const pwm5 = writable(0);
 
+export const input_throttle = writable(0);
+export const input_steering = writable(0);
+export const input_increment = writable(0.01);
+
 export const vel_linear  = writable(0);
 export const vel_angular = writable(0);
 
