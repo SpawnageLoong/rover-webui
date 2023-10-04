@@ -1,6 +1,7 @@
 <script lang="js">
   import { host, pwm0, pwm1, pwm2, pwm3, pwm4, pwm5,
            input_throttle, input_steering, input_increment,
+           Vmax, Wmax,
            vel_angular, vel_linear, ext_temp0,
            int_temp0, int_temp1, int_temp2,
            int_hum0, int_hum1, int_hum2, int_pres0,
@@ -15,25 +16,52 @@
   })
 
   function incrementThrottle() {
-    input_throttle.update((n) => Math.min(n+$input_increment, 1))
+    input_throttle.update((n) => Math.min(n+$input_increment, 100))
   }
 
   function decrementThrottle() {
-    input_throttle.update((n) => Math.max(n-$input_increment, -1))
+    input_throttle.update((n) => Math.max(n-$input_increment, -100))
   }
 
   function incrementSteering() {
-    input_steering.update((n) => Math.min(n+$input_increment, 1))
+    input_steering.update((n) => Math.min(n+$input_increment, 100))
   }
 
   function decrementSteering() {
-    input_steering.update((n) => Math.max(n-$input_increment, -1))
+    input_steering.update((n) => Math.max(n-$input_increment, -100))
   }
 
   function stopAll() {
     input_steering.set(0);
     input_throttle.set(0);
   }
+
+  function calcVW() {
+    var throttle = Math.round($input_throttle)
+    var steering = Math.round($input_steering)
+    var hyp = Math.sqrt(throttle **2 + steering **2)
+    var hyp_max = 100
+    if (throttle == 0) {;
+
+    } else if (Math.abs(throttle) > Math.abs(steering)) {
+      hyp_max = Math.abs(100 / throttle * hyp)
+    } else {
+      hyp_max = Math.abs(100 / steering * hyp)
+    }
+    var hyp_percent = hyp / hyp_max
+    var throttle_scaler = Math.round(hyp_percent * (throttle / hyp) * 100)
+    var steering_scaler = Math.round(hyp_percent * (steering / hyp) * 100)
+    vel_linear.set(throttle_scaler / 100 * $Vmax)
+    vel_angular.set(steering_scaler / 100 * $Wmax)
+  }
+
+  input_throttle.subscribe(() => {
+    calcVW();
+  })
+
+  input_steering.subscribe(() => {
+    calcVW();
+  })
 
 </script>
 
@@ -90,16 +118,16 @@
     <div class="bg-gray-600 rounded-xl shadow-lg px-4 py-2">
       Target Velocities:
       <ul>
-        <li>Linear: {$vel_linear}</li>
-        <li>Angular: {$vel_angular}</li>
+        <li>Linear: {Math.round($vel_linear*1000) / 1000}</li>
+        <li>Angular: {Math.round($vel_angular*1000) / 1000}</li>
       </ul>
     </div>
 
     <div class="bg-gray-600 rounded-xl shadow-lg px-4 py-2">
       Inputs:
       <ul>
-        <li>Throttle: {Math.round($input_throttle*100)}%</li>
-        <li>Steering: {Math.round($input_steering*100)}%</li>
+        <li>Throttle: {Math.round($input_throttle)}%</li>
+        <li>Steering: {Math.round($input_steering)}%</li>
       </ul>
     </div>
   

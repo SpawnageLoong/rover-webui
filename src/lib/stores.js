@@ -1,4 +1,4 @@
-import { writable } from "svelte/store";
+import { writable,get } from "svelte/store";
 import ROSLIB from "roslib";
 
 export const host = writable("192.168.1.168")
@@ -13,10 +13,13 @@ export const pwm5 = writable(0);
 
 export const input_throttle = writable(0);
 export const input_steering = writable(0);
-export const input_increment = writable(0.01);
+export const input_increment = writable(1);
 
-export const vel_linear  = writable(0);
-export const vel_angular = writable(0);
+export const Vmax = writable(2.924);
+export const Wmax = writable(6.542);
+
+export const vel_linear  = writable(0.0);
+export const vel_angular = writable(0.0);
 
 export const ext_temp0 = writable(0);
 export const int_temp0 = writable(0);
@@ -58,7 +61,7 @@ ros.on('close', function() {
 });
 
 // Subscribing to a Topic
-  // --------------------------------------
+// --------------------------------------
 
   var pwm0_subscriber = new ROSLIB.Topic({
     ros : ros,
@@ -89,11 +92,6 @@ ros.on('close', function() {
     ros : ros,
     name : '/motors_pwm/motor5',
     messageType : 'std_msgs/Int32'
-  });
-  var cmd_vel_subscriber = new ROSLIB.Topic({
-    ros : ros,
-    name : '/cmd_vel',
-    messageType : 'geometry_msgs/Twist'
   });
   var sensor_subscriber = new ROSLIB.Topic({
     ros : ros,
@@ -128,11 +126,6 @@ ros.on('close', function() {
     // console.log('Received message on ' + pwm5_subscriber.name + ': ' + message.data);
     pwm5.set(message.data);
   });
-  cmd_vel_subscriber.subscribe(function(message) {
-    // console.log('Received message on ' + cmd_vel_subscriber.name + ': ' + message.data);
-    vel_linear.set(message.linear.x);
-    vel_angular.set(message.angular.z);
-  });
   sensor_subscriber.subscribe(function(message) {
     // console.log('Received message on ' + sensor_subscriber.name);
     ext_temp0.set(message.ext_temp0);
@@ -155,3 +148,44 @@ ros.on('close', function() {
     mag_z.set(message.mag_z);
     imu_temp.set(message.int_temp3);
   })
+
+  // Publishers
+  // --------------------------------------
+  var twist_publisher = new ROSLIB.Topic({
+    ros : ros,
+    name : '/cmd_vel',
+    messageType : 'geometry_msgs/Twist'
+  })
+
+  vel_linear.subscribe(() => {
+    var twist = new ROSLIB.Message({
+      linear : {
+        x : get(vel_linear),
+        y : 0,
+        z : 0
+      },
+      angular : {
+        x : 0,
+        y : 0,
+        z : get(vel_angular)
+      }
+    });
+    twist_publisher.publish(twist);
+  })
+
+  vel_angular.subscribe(() => {
+    var twist = new ROSLIB.Message({
+      linear : {
+        x : get(vel_linear),
+        y : 0.0,
+        z : 0.0
+      },
+      angular : {
+        x : 0.0,
+        y : 0.0,
+        z : get(vel_angular)
+      }
+    });
+    twist_publisher.publish(twist);
+  })
+  
