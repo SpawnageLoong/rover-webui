@@ -15,7 +15,7 @@
     <ul class="flex flex-wrap -mb-px">
         <li class="mr-2">
             <button 
-              class="inline-block p-4 border-b-2 border-transparent rounded-t-lg ${!$gamepad_input ? 'text-blue-600 border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500' : 'hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300'}"
+              class="inline-block p-4 border-b-2 border-transparent rounded-t-lg ${!$gamepad_input ? ' text-blue-400 border-blue-400' : 'hover:text-gray-600 hover:border-gray-300 '}"
               on:click={setKeyboardInput}
               >
               Keyboard
@@ -23,7 +23,7 @@
         </li>
         <li class="mr-2">
             <button 
-              class="inline-block p-4 border-b-2 border-transparent rounded-t-lg ${$gamepad_input ? 'text-blue-600 border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500' : 'hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300'}"
+              class="inline-block p-4 border-b-2 border-transparent rounded-t-lg ${$gamepad_input ? ' text-blue-400 border-blue-400' : 'hover:text-gray-600 hover:border-gray-300 '}"
               on:click={setGamepadInput}
               >
               Gamepad
