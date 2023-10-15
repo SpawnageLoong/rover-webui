@@ -1,6 +1,5 @@
 <script lang="js">
   import { host, pwm0, pwm1, pwm2, pwm3, pwm4, pwm5,
-           gamepad_input,
            input_throttle, input_steering, Vmax, Wmax,
            vel_angular, vel_linear, ext_temp0,
            int_temp0, int_temp1, int_temp2,
@@ -10,8 +9,6 @@
            mag_z, imu_temp } from '$lib/stores.js';
 
   import { onMount } from 'svelte';
-	import ButtonInput from '../lib/components/buttonInput.svelte';
-  import GamepadInput from '../lib/components/gamepadInput.svelte';
 	import InputSelector from '../lib/components/inputSelector.svelte';
 
   onMount(() => {
