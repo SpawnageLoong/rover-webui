@@ -15,6 +15,8 @@ export const input_throttle = writable(0);
 export const input_steering = writable(0);
 export const input_increment = writable(1);
 
+export const gamepad_input = writable(false);
+
 export const Vmax = writable(2.924);
 export const Wmax = writable(6.542);
 

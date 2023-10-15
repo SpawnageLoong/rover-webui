@@ -1,24 +1,39 @@
 <script lang="js">
-    import { input_throttle, input_steering, input_increment,
-             Vmax, Wmax, vel_angular, vel_linear} from '$lib/stores.js';
+    import { input_throttle, input_steering,
+             input_increment, gamepad_input } from '$lib/stores.js';
   
     function incrementThrottle() {
+      if ($gamepad_input) {
+        return;
+      }
       input_throttle.update((n) => Math.min(n+$input_increment, 100))
     }
   
     function decrementThrottle() {
+      if ($gamepad_input) {
+        return;
+      }
       input_throttle.update((n) => Math.max(n-$input_increment, -100))
     }
   
     function incrementSteering() {
+      if ($gamepad_input) {
+        return;
+      }
       input_steering.update((n) => Math.min(n+$input_increment, 100))
     }
   
     function decrementSteering() {
+      if ($gamepad_input) {
+        return;
+      }
       input_steering.update((n) => Math.max(n-$input_increment, -100))
     }
   
     function stopAll() {
+      if ($gamepad_input) {
+        return;
+      }
       input_steering.set(0);
       input_throttle.set(0);
     }
