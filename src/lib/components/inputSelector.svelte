@@ -1,5 +1,7 @@
 <script lang="js">
   import { gamepad_input } from '$lib/stores.js';
+	import ButtonInput from './buttonInput.svelte';
+	import GamepadInput from './gamepadInput.svelte';
 
   function setGamepadInput() {
     gamepad_input.set(true);
@@ -31,4 +33,9 @@
         </li>
     </ul>
   </div>
+  {#if ($gamepad_input)}
+    <GamepadInput />
+  {:else}
+    <ButtonInput />
+  {/if}
 </div>

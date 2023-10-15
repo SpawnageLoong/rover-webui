@@ -39,7 +39,7 @@
     }
 </script>
 
-<div class="flex bg-gray-600 p-4 rounded-xl shadow-lg">
+<div class="flex p-4">
     <div class="grid grid-cols-3 grid-rows-3 gap-2">
       <button
         on:click={incrementThrottle}

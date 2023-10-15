@@ -72,7 +72,7 @@
 
 <svelte:window on:gamepadconnected={startController} on:gamepaddisconnected={stopController} />
 
-<div class="flex flex-col bg-gray-600 p-4 rounded-xl shadow-lg">
+<div class="flex flex-col p-4">
     Gamepad {gamepad_connected ? "connected" : "disconnected"}, Input {$gamepad_input ? "enabled" : "disabled"}
     <button
         class="bg-gray-800 col-start-3 row-start-2 p-2 rounded-lg text-center hover:bg-gray-700"
