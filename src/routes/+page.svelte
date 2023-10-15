@@ -1,7 +1,6 @@
 <script lang="js">
   import { host, pwm0, pwm1, pwm2, pwm3, pwm4, pwm5,
-           input_throttle, input_steering, input_increment,
-           Vmax, Wmax,
+           input_throttle, input_steering, Vmax, Wmax,
            vel_angular, vel_linear, ext_temp0,
            int_temp0, int_temp1, int_temp2,
            int_hum0, int_hum1, int_hum2, int_pres0,
@@ -10,31 +9,11 @@
            mag_z, imu_temp } from '$lib/stores.js';
 
   import { onMount } from 'svelte';
+	import ButtonInput from '../lib/components/buttonInput.svelte';
 
   onMount(() => {
     host.set(window.location.hostname)
   })
-
-  function incrementThrottle() {
-    input_throttle.update((n) => Math.min(n+$input_increment, 100))
-  }
-
-  function decrementThrottle() {
-    input_throttle.update((n) => Math.max(n-$input_increment, -100))
-  }
-
-  function incrementSteering() {
-    input_steering.update((n) => Math.min(n+$input_increment, 100))
-  }
-
-  function decrementSteering() {
-    input_steering.update((n) => Math.max(n-$input_increment, -100))
-  }
-
-  function stopAll() {
-    input_steering.set(0);
-    input_throttle.set(0);
-  }
 
   function calcVW() {
     var throttle = Math.round($input_throttle)
@@ -73,45 +52,7 @@
         alt="Front camera stream"
         class="object-scale-down">
     </div>
-    <div class="bg-gray-600 p-4 rounded-xl shadow-lg">
-      <div class="flex">
-        <div class="grid grid-cols-3 grid-rows-3 gap-2">
-          <button
-            on:click={incrementThrottle}
-            class="bg-gray-800 col-start-2 p-2 rounded-lg text-center hover:bg-gray-700">
-            Foward
-            <br>
-            W
-          </button>
-          <button
-            on:click={incrementSteering}
-            class="bg-gray-800 col-start-1 row-start-2 p-2 rounded-lg text-center hover:bg-gray-700">
-            Left
-            <br>
-            A
-          </button>
-          <button
-            on:click={stopAll}
-            class="bg-gray-800 col-start-2 row-start-2 p-2 rounded-lg text-center hover:bg-gray-700">
-            Stop
-          </button>
-          <button
-            on:click={decrementSteering}
-            class="bg-gray-800 col-start-3 row-start-2 p-2 rounded-lg text-center hover:bg-gray-700">
-            Right
-            <br>
-            D
-          </button>
-          <button
-            on:click={decrementThrottle}
-            class="bg-gray-800 col-start-2 row-start-3 p-2 rounded-lg text-center hover:bg-gray-700">
-            Reverse
-            <br>
-            S
-          </button>
-        </div>
-      </div>
-    </div>
+    <ButtonInput />
   </div>
 
   <div class="basis-2/4 flex flex-col gap-4">
