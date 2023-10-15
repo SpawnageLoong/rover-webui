@@ -1,45 +1,79 @@
 <script lang="js">
     import { input_throttle, input_steering, gamepad_input } from '$lib/stores.js';
-  
-    window.addEventListener("gamepadconnected", (e) => {
-        const gamepad = e.gamepad;
-        console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
-            gamepad.index, gamepad.id,
-            gamepad.buttons.length, gamepad.axes.length);
-    })
+    var gamepad_connected = false;
+    let poll;
 
-    window.addEventListener("gamepaddisconnected", (e) => {
-        console.log("Gamepad disconnected from index %d: %s",
-            e.gamepad.index, e.gamepad.id);
-    })
+    let buttonMap = {
+		a: 0,
+		b: 0,
+		x: 0,
+		y: 0,
+		lb: 0,
+		rb: 0,
+		lt: 0,
+		rt: 0,
+		map: 0,
+		menu: 0,
+		lstick: 0,
+		rstick: 0,
+		du: 0,
+		dd: 0,
+		dl: 0,
+		dr: 0,
+		xbox: 0
+	};
+    let axisMap = {
+		lx: 0,
+		ly: 0,
+		rx: 0,
+		rx: 0
+	};
 
-    function handleGamepadInput() {
+    const startController = () => {
+        gamepad_connected = true;
         const gamepads = navigator.getGamepads();
-        const gamepad = gamepads[0];
-        if (gamepad) {
-            const axes = gamepad.axes;
-            const buttons = gamepad.buttons;
-            const throttle = Math.round(axes[1] * 100);
-            const steering = Math.round(axes[0] * 100);
-            input_throttle.set(throttle);
-            input_steering.set(steering);
+        if (!gamepads) {
+            return;
         }
-        requestAnimationFrame(handleGamepadInput);
+        const gamepad = gamepads[0];
+        const buttons = ["a","b","x","y","lb","rb","lt","rt","map","menu","lstick","rstick","du","dd","dl","dr","xbox"];
+        const axes = ["lx","ly","rx","ry"];
+
+        gamepad.buttons.forEach((button, i) => {
+            buttonMap[buttons[i]] = button.pressed ? button.value : 0;
+        })
+        gamepad.axes.forEach((axis, i) => {
+            axisMap[axes[i]] = ( axis > 0.01 || axis < -0.01 ) ? parseFloat(axis.toFixed(3)) : 0;
+        })
+
+        if ($gamepad_input) {
+            input_throttle.set(Math.round(buttonMap["rt"] * 100));
+            input_steering.set(Math.round(axisMap["lx"] * 100));
+        }
+
+        poll = requestAnimationFrame(startController);
     }
 
-    gamepad_input.subscribe(() => {
-        if ($gamepad_input) {
-            requestAnimationFrame(handleGamepadInput);
-        }
-    })
+    const stopController = () => {
+        gamepad_connected = false;
+        cancelAnimationFrame(poll);
+        input_throttle.set(0);
+        input_steering.set(0);
+    }
 
     function setGamepadInput() {
-        gamepad_input.set(true);
+        if ($gamepad_input) {
+            gamepad_input.set(false);
+        } else {
+            gamepad_input.set(true);
+        }
     }
 </script>
 
-<div class="flex bg-gray-600 p-4 rounded-xl shadow-lg">
-    Gamepad {gamepad_input ? "connected" : "disconnected"}
+<svelte:window on:gamepadconnected={startController} on:gamepaddisconnected={stopController} />
+
+<div class="flex flex-col bg-gray-600 p-4 rounded-xl shadow-lg">
+    Gamepad {gamepad_connected ? "connected" : "disconnected"}, Input {$gamepad_input ? "enabled" : "disabled"}
     <button
         class="bg-gray-800 col-start-3 row-start-2 p-2 rounded-lg text-center hover:bg-gray-700"
         on:click={setGamepadInput}>

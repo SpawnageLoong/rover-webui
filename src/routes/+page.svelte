@@ -10,6 +10,7 @@
 
   import { onMount } from 'svelte';
 	import ButtonInput from '../lib/components/buttonInput.svelte';
+  import GamepadInput from '../lib/components/gamepadInput.svelte';
 
   onMount(() => {
     host.set(window.location.hostname)
@@ -52,7 +53,7 @@
         alt="Front camera stream"
         class="object-scale-down">
     </div>
-    <ButtonInput />
+    <GamepadInput />
   </div>
 
   <div class="basis-2/4 flex flex-col gap-4">
