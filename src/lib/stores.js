@@ -16,6 +16,10 @@ export const input_steering = writable(0);
 export const input_increment = writable(1);
 
 export const gamepad_input = writable(false);
+gamepad_input.subscribe(() => {
+  input_throttle.set(0);
+  input_steering.set(0);
+})
 
 export const Vmax = writable(2.924);
 export const Wmax = writable(6.542);
