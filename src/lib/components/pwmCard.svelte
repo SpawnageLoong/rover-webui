@@ -15,7 +15,7 @@
             cy="40"
         />
         <circle
-            class="text-blue-500"
+            class="{(pwmVal < 0) ? 'text-red-500' : 'text-blue-500'}"
             stroke-width="5"
             stroke-dasharray="{circumference}"
             stroke-dashoffset="{circumference - pwmVal / 255 * circumference}"
