@@ -31,8 +31,8 @@
     var hyp_percent = hyp / hyp_max
     var throttle_scaler = Math.round(hyp_percent * (throttle / hyp) * 100)
     var steering_scaler = Math.round(hyp_percent * (steering / hyp) * 100)
-    vel_linear.set(throttle_scaler / 100 * $Vmax)
-    vel_angular.set(steering_scaler / 100 * $Wmax)
+    vel_linear.set(isNaN(throttle_scaler) ? 0 : throttle_scaler / 100 * $Vmax)
+    vel_angular.set(isNaN(steering_scaler) ? 0 : steering_scaler / 100 * $Wmax)
   }
 
   input_throttle.subscribe(() => {
