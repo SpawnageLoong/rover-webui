@@ -64,6 +64,8 @@
     function setGamepadInput() {
         if ($gamepad_input) {
             gamepad_input.set(false);
+            input_throttle.set(0);
+            input_steering.set(0);
         } else {
             gamepad_input.set(true);
         }
