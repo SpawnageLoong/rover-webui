@@ -19,18 +19,9 @@
   function calcVW() {
     var throttle = Math.round($input_throttle)
     var steering = Math.round($input_steering)
-    var hyp = Math.sqrt(throttle **2 + steering **2)
-    var hyp_max = 100
-    if (throttle == 0) {;
+    var throttle_scaler = throttle - (Math.abs(steering)/2*throttle/100)
+    var steering_scaler = steering - (Math.abs(throttle)/2*steering/100)
 
-    } else if (Math.abs(throttle) > Math.abs(steering)) {
-      hyp_max = Math.abs(100 / throttle * hyp)
-    } else {
-      hyp_max = Math.abs(100 / steering * hyp)
-    }
-    var hyp_percent = hyp / hyp_max
-    var throttle_scaler = Math.round(hyp_percent * (throttle / hyp) * 100)
-    var steering_scaler = Math.round(hyp_percent * (steering / hyp) * 100)
     vel_linear.set(isNaN(throttle_scaler) ? 0 : throttle_scaler / 100 * $Vmax)
     vel_angular.set(isNaN(steering_scaler) ? 0 : steering_scaler / 100 * $Wmax)
   }
