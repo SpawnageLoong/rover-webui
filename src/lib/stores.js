@@ -65,35 +65,10 @@ ros.on('close', function() {
 // Subscribing to a Topic
 // --------------------------------------
 
-  var pwm0_subscriber = new ROSLIB.Topic({
+  var pwm_subscriber = new ROSLIB.Topic({
     ros : ros,
-    name : '/motors_pwm/motor0',
-    messageType : 'std_msgs/Int32'
-  });
-  var pwm1_subscriber = new ROSLIB.Topic({
-    ros : ros,
-    name : '/motors_pwm/motor1',
-    messageType : 'std_msgs/Int32'
-  });
-  var pwm2_subscriber = new ROSLIB.Topic({
-    ros : ros,
-    name : '/motors_pwm/motor2',
-    messageType : 'std_msgs/Int32'
-  });
-  var pwm3_subscriber = new ROSLIB.Topic({
-    ros : ros,
-    name : '/motors_pwm/motor3',
-    messageType : 'std_msgs/Int32'
-  });
-  var pwm4_subscriber = new ROSLIB.Topic({
-    ros : ros,
-    name : '/motors_pwm/motor4',
-    messageType : 'std_msgs/Int32'
-  });
-  var pwm5_subscriber = new ROSLIB.Topic({
-    ros : ros,
-    name : '/motors_pwm/motor5',
-    messageType : 'std_msgs/Int32'
+    name : '/motors_pwm',
+    messageType : 'rover_interfaces/PwmArray'
   });
   var sensor_subscriber = new ROSLIB.Topic({
     ros : ros,
@@ -104,29 +79,14 @@ ros.on('close', function() {
   // Subscriber callbacks
   // --------------------
 
-  pwm0_subscriber.subscribe(function(message) {
+  pwm_subscriber.subscribe(function(message) {
     // console.log('Received message on ' + pwm0_subscriber.name + ': ' + message.data);
-    pwm0.set(message.data);
-  });
-  pwm1_subscriber.subscribe(function(message) {
-    // console.log('Received message on ' + pwm1_subscriber.name + ': ' + message.data);
-    pwm1.set(message.data);
-  });
-  pwm2_subscriber.subscribe(function(message) {
-    // console.log('Received message on ' + pwm2_subscriber.name + ': ' + message.data);
-    pwm2.set(message.data);
-  });
-  pwm3_subscriber.subscribe(function(message) {
-    // console.log('Received message on ' + pwm3_subscriber.name + ': ' + message.data);
-    pwm3.set(message.data);
-  });
-  pwm4_subscriber.subscribe(function(message) {
-    // console.log('Received message on ' + pwm4_subscriber.name + ': ' + message.data);
-    pwm4.set(message.data);
-  });
-  pwm5_subscriber.subscribe(function(message) {
-    // console.log('Received message on ' + pwm5_subscriber.name + ': ' + message.data);
-    pwm5.set(message.data);
+    pwm0.set(message.pwm0);
+    pwm1.set(message.pwm1);
+    pwm2.set(message.pwm2);
+    pwm3.set(message.pwm3);
+    pwm4.set(message.pwm4);
+    pwm5.set(message.pwm5);
   });
   sensor_subscriber.subscribe(function(message) {
     // console.log('Received message on ' + sensor_subscriber.name);
