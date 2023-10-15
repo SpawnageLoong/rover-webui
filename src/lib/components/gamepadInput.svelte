@@ -74,9 +74,12 @@
 
 <div class="flex flex-col p-4">
     Gamepad {gamepad_connected ? "connected" : "disconnected"}, Input {$gamepad_input ? "enabled" : "disabled"}
-    <button
-        class="bg-gray-800 col-start-3 row-start-2 p-2 rounded-lg text-center hover:bg-gray-700"
-        on:click={setGamepadInput}>
-        Set Gamepad Input
-    </button>
+    <br>
+    <div class="rounded-xl px-4 py-2">
+        Inputs:
+        <ul>
+          <li>Throttle: {Math.round($input_throttle)}%</li>
+          <li>Steering: {Math.round($input_steering)}%</li>
+        </ul>
+      </div>
 </div>

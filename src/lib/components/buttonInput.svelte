@@ -39,7 +39,7 @@
     }
 </script>
 
-<div class="flex p-4">
+<div class="flex p-4 gap-4">
     <div class="grid grid-cols-3 grid-rows-3 gap-2">
       <button
         on:click={incrementThrottle}
@@ -74,5 +74,12 @@
         <br>
         S
       </button>
+    </div>
+    <div class="rounded-xl px-4 py-2">
+      Inputs:
+      <ul>
+        <li>Throttle: {Math.round($input_throttle)}%</li>
+        <li>Steering: {Math.round($input_steering)}%</li>
+      </ul>
     </div>
   </div>
