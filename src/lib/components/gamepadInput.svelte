@@ -47,8 +47,8 @@
         })
 
         if ($gamepad_input) {
-            input_throttle.set(Math.round(buttonMap["rt"] * 100));
-            input_steering.set(Math.round(axisMap["lx"] * 100));
+            input_throttle.set(Math.round(buttonMap["rt"] * 100) - Math.round(buttonMap["lt"] * 100));
+            input_steering.set(Math.round(axisMap["lx"] * -100));
         }
 
         poll = requestAnimationFrame(startController);
