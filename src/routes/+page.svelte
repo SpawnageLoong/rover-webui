@@ -69,27 +69,27 @@
       <div class="bg-gray-600 rounded-xl shadow-lg px-4 py-2 text-xl">
         PWM Values:
         <div class="grid grid-cols-2 grid-rows-3 gap-4 py-4">
-          <div class="text-center">
+          <div class="text-center col-start-1 row-start-1">
             #1
             <PwmCard pwmVal={$pwm0} />
           </div>
-          <div class="text-center">
+          <div class="text-center col-start-1 row-start-2">
             #2
             <PwmCard pwmVal={$pwm1} />
           </div>
-          <div class="text-center">
+          <div class="text-center col-start-1 row-start-3">
             #3
             <PwmCard pwmVal={$pwm2} />
           </div>
-          <div class="text-center">
+          <div class="text-center col-start-2 row-start-1">
             #4
             <PwmCard pwmVal={$pwm3} />
           </div>
-          <div class="text-center">
+          <div class="text-center col-start-2 row-start-2">
             #5
             <PwmCard pwmVal={$pwm4} />
           </div>
-          <div class="text-center">
+          <div class="text-center col-start-2 row-start-3">
             #6
             <PwmCard pwmVal={$pwm5} />
           </div>
