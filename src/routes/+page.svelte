@@ -11,6 +11,7 @@
   import { onMount } from 'svelte';
 	import InputSelector from '../lib/components/inputSelector.svelte';
 	import PwmCard from '../lib/components/pwmCard.svelte';
+  import CameraFov from '../lib/components/cameraFov.svelte';
 
   onMount(() => {
     host.set(window.location.hostname)
@@ -89,6 +90,8 @@
     </div>
 
     <div class="flex-auto flex flex-col gap-4">
+      <CameraFov />
+
       <div class="bg-gray-600 rounded-xl shadow-lg px-4 py-2">
         Telemetry:
         <ul>

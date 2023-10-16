@@ -27,6 +27,9 @@ export const Wmax = writable(6.542);
 export const vel_linear  = writable(0.0);
 export const vel_angular = writable(0.0);
 
+export const camera_pan = writable(0.0);
+export const camera_tilt = writable(0.0);
+
 export const ext_temp0 = writable(0);
 export const int_temp0 = writable(0);
 export const int_temp1 = writable(0);
