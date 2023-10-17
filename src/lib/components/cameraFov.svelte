@@ -6,17 +6,15 @@
   <div class="text-xl flex flex-col basis-2/4">
     Horizontal FoV:
     <svg width="200" height="200">
-      <g
+      <path
+        d="M 100 100
+            L 13.4 150
+            A 100 100 0 0 0 186.6 150
+            L 100 100"
+        stroke="red"
+        stroke-width="2"
+        fill="none"
         transform="rotate(180 100 100)">
-        <path
-          d="M 100 100
-             L 13.4 150
-             A 100 100 0 0 0 186.6 150
-             L 100 100"
-          stroke="red"
-          stroke-width="2"
-          fill="none"/>
-      </g>
     </svg>
   </div>
       
