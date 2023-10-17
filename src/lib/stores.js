@@ -161,3 +161,24 @@ ros.on('close', function() {
     twist_publisher.publish(twist);
   })
   
+  var cam_publisher = new ROSLIB.Topic({
+    ros : ros,
+    name : '/camera_cmd',
+    messageType : 'rover_interfaces/CameraCmd'
+  })
+
+  camera_pan.subscribe(() => {
+    var cam_cmd = new ROSLIB.Message({
+      pan : get(camera_pan),
+      tilt : get(camera_tilt)
+    })
+    cam_publisher.publish(cam_cmd);
+  })
+
+  camera_tilt.subscribe(() => {
+    var cam_cmd = new ROSLIB.Message({
+      pan : get(camera_pan),
+      tilt : get(camera_tilt)
+    })
+    cam_publisher.publish(cam_cmd);
+  })
