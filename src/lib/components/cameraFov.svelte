@@ -23,7 +23,7 @@
         stroke-width="2"
         fill="red"
         fill-opacity="0.2"
-        transform="rotate({180 + $camera_pan} 100 100)"/>
+        transform="rotate({180 - $camera_pan} 100 100)"/>
     </svg>
     {$camera_pan}°
   </div>

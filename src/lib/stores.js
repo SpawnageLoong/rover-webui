@@ -29,6 +29,7 @@ export const vel_angular = writable(0.0);
 
 export const camera_pan = writable(0.0);
 export const camera_tilt = writable(0.0);
+export const cam_increment = writable(1.0);
 
 export const ext_temp0 = writable(0);
 export const int_temp0 = writable(0);
