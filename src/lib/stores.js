@@ -15,12 +15,6 @@ export const input_throttle = writable(0);
 export const input_steering = writable(0);
 export const input_increment = writable(1);
 
-export const gamepad_input = writable(false);
-gamepad_input.subscribe(() => {
-  input_throttle.set(0);
-  input_steering.set(0);
-})
-
 export const Vmax = writable(2.924);
 export const Wmax = writable(6.542);
 
@@ -30,6 +24,14 @@ export const vel_angular = writable(0.0);
 export const camera_pan = writable(0.0);
 export const camera_tilt = writable(0.0);
 export const cam_increment = writable(1.0);
+
+export const gamepad_input = writable(false);
+gamepad_input.subscribe(() => {
+  input_throttle.set(0);
+  input_steering.set(0);
+  camera_pan.set(0);
+  camera_tilt.set(0);
+})
 
 export const ext_temp0 = writable(0);
 export const int_temp0 = writable(0);
