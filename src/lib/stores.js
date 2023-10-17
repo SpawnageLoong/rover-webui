@@ -57,7 +57,7 @@ export const imu_temp = writable(0);
 // Connecting to ROS
 // -----------------
 var ros = new ROSLIB.Ros({
-    url : 'ws://192.168.1.168:9090'
+    url : 'ws://'+get(host)+':9090'
 });
 ros.on('connection', function() {
     console.log('Connected to websocket server.');
