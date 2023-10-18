@@ -74,7 +74,42 @@
       camera_pan.set(0);
       camera_tilt.set(0);
     }
+
+    function onKeyDown(e) {
+      console.log(e.keyCode);
+      switch(e.keyCode) {
+        case 38:
+          incrementCamTilt();
+          break;
+        case 40:
+          decrementCamTilt();
+          break;
+        case 37:
+          incrementCamPan();
+          break;
+        case 39:
+          decrementCamPan();
+          break;
+        case 87:
+          incrementThrottle();
+          break;
+        case 83:
+          decrementThrottle();
+          break;
+        case 65:
+          decrementSteering();
+          break;
+        case 68:
+          incrementSteering();
+          break;
+        case 32:
+          stopAll();
+          break;
+      }
+	}
 </script>
+
+<svelte:window on:keydown|preventDefault={onKeyDown} />
 
 <div class="flex p-4 gap-4">
     <div class="grid grid-cols-3 grid-rows-3 gap-2 left-0">
