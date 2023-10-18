@@ -148,16 +148,12 @@
       </button>
     </div>
 
-    <div class="rounded-xl px-4 py-2">
+    <div class="flex-grow rounded-xl px-4 py-2 text-xl text-center">
       Inputs:
       <ul>
         <li>Throttle: {Math.round($input_throttle)}%</li>
         <li>Steering: {Math.round($input_steering)}%</li>
       </ul>
-    </div>
-
-    <div class="flex-grow">
-
     </div>
 
     <div class="grid grid-cols-3 grid-rows-3 gap-2 right-0">
