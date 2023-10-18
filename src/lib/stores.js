@@ -24,6 +24,14 @@ export const vel_angular = writable(0.0);
 export const camera_pan = writable(0.0);
 export const camera_tilt = writable(0.0);
 export const cam_increment = writable(1.0);
+export const cam_pan_max = writable(60.0);
+export const cam_tilt_max = writable(60.0);
+
+export const joystick_deadzone = writable(0.05);
+export const joystick_left_invert = writable(true);
+export const joystick_right_invert = writable(false);
+
+export const throttle_limit = writable(10);
 
 export const gamepad_input = writable(false);
 gamepad_input.subscribe(() => {

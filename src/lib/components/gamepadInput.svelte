@@ -1,5 +1,7 @@
 <script lang="js">
-    import { input_throttle, input_steering, gamepad_input } from '$lib/stores.js';
+    import { input_throttle, input_steering,
+             joystick_deadzone,  joystick_left_invert, joystick_right_invert,
+             camera_pan, camera_tilt, cam_pan_max, cam_tilt_max, gamepad_input } from '$lib/stores.js';
     var gamepad_connected = false;
     let poll;
 
@@ -43,12 +45,14 @@
             buttonMap[buttons[i]] = button.pressed ? button.value : 0;
         })
         gamepad.axes.forEach((axis, i) => {
-            axisMap[axes[i]] = ( axis > 0.01 || axis < -0.01 ) ? parseFloat(axis.toFixed(3)) : 0;
+            axisMap[axes[i]] = ( axis > $joystick_deadzone || axis < -($joystick_deadzone) ) ? parseFloat(axis.toFixed(3)) : 0;
         })
 
         if ($gamepad_input) {
             input_throttle.set(Math.round(buttonMap["rt"] * 100) - Math.round(buttonMap["lt"] * 100));
-            input_steering.set(Math.round(axisMap["lx"] * -100));
+            input_steering.set(Math.round(axisMap["lx"] * -100) * ($joystick_left_invert ? -1 : 1));
+            camera_pan.set(Math.round(axisMap["rx"] * $cam_pan_max) * ($joystick_right_invert ? -1 : 1));
+            camera_tilt.set(Math.round(axisMap["ry"] * $cam_tilt_max) * ($joystick_right_invert ? -1 : 1));
         }
 
         poll = requestAnimationFrame(startController);
@@ -59,15 +63,10 @@
         cancelAnimationFrame(poll);
         input_throttle.set(0);
         input_steering.set(0);
+        camera_pan.set(0);
+        camera_tilt.set(0);
     }
 
-    function setGamepadInput() {
-        if ($gamepad_input) {
-            gamepad_input.set(false);
-        } else {
-            gamepad_input.set(true);
-        }
-    }
 </script>
 
 <svelte:window on:gamepadconnected={startController} on:gamepaddisconnected={stopController} />
