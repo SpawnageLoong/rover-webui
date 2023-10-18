@@ -1,6 +1,7 @@
 <script lang="js">
     import { input_throttle, input_steering, input_increment,
-             camera_pan, camera_tilt, cam_increment, gamepad_input } from '$lib/stores.js';
+             camera_pan, camera_tilt, cam_increment,
+             cam_pan_max, cam_tilt_max, gamepad_input } from '$lib/stores.js';
   
     function incrementThrottle() {
       if ($gamepad_input) {
@@ -42,28 +43,28 @@
       if ($gamepad_input) {
         return;
       }
-      camera_pan.update((n) => Math.min(n+$cam_increment, 60))
+      camera_pan.update((n) => Math.min(n+$cam_increment, $cam_pan_max))
     }
 
     function decrementCamPan() {
       if ($gamepad_input) {
         return;
       }
-      camera_pan.update((n) => Math.max(n-$cam_increment, -60))
+      camera_pan.update((n) => Math.max(n-$cam_increment, -$cam_pan_max))
     }
 
     function incrementCamTilt() {
       if ($gamepad_input) {
         return;
       }
-      camera_tilt.update((n) => Math.min(n+$cam_increment, 60))
+      camera_tilt.update((n) => Math.min(n+$cam_increment, $cam_tilt_max))
     }
 
     function decrementCamTilt() {
       if ($gamepad_input) {
         return;
       }
-      camera_tilt.update((n) => Math.max(n-$cam_increment, -60))
+      camera_tilt.update((n) => Math.max(n-$cam_increment, -$cam_tilt_max))
     }
 
     function resetCam() {
