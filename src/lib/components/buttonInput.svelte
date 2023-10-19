@@ -97,10 +97,10 @@
           decrementThrottle();
           break;
         case 65:
-          decrementSteering();
+          incrementSteering();
           break;
         case 68:
-          incrementSteering();
+          decrementSteering();
           break;
         case 32:
           stopAll();
