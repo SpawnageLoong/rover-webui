@@ -6,7 +6,7 @@
            int_hum0, int_hum1, int_hum2, int_pres0,
            alt0, accel_x, accel_y, accel_z,
            gyro_x, gyro_y, gyro_z, mag_x, mag_y,
-           mag_z, imu_temp } from '$lib/stores.js';
+           mag_z, imu_temp, invert_controls } from '$lib/stores.js';
 
   import { onMount } from 'svelte';
 	import InputSelector from '../lib/components/inputSelector.svelte';
@@ -54,7 +54,7 @@
         Target Velocities:
         <ul class="text-base">
           <li>Linear: {Math.round($vel_linear*1000) / 1000}</li>
-          <li>Angular: {Math.round($vel_angular*1000) / 1000}</li>
+          <li>Angular: {Math.round($vel_angular*1000) / 1000  * ($invert_controls ? -1 : 1)}</li>
         </ul>
       </div>
 

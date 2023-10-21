@@ -41,6 +41,8 @@ gamepad_input.subscribe(() => {
   camera_tilt.set(0);
 })
 
+export const invert_controls = writable(false);
+
 export const ext_temp0 = writable(0);
 export const int_temp0 = writable(0);
 export const int_temp1 = writable(0);

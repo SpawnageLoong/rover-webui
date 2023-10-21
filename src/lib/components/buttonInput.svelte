@@ -1,7 +1,7 @@
 <script lang="js">
     import { input_throttle, input_steering, input_increment,
              camera_pan, camera_tilt, cam_increment,
-             cam_pan_max, cam_tilt_max, gamepad_input } from '$lib/stores.js';
+             cam_pan_max, cam_tilt_max, gamepad_input, invert_controls } from '$lib/stores.js';
   
     function incrementThrottle() {
       if ($gamepad_input) {
@@ -21,14 +21,14 @@
       if ($gamepad_input) {
         return;
       }
-      input_steering.update((n) => Math.min(n+$input_increment, 100))
+      input_steering.update((n) => Math.min(n+($input_increment * ($invert_controls ? -1 : 1)), 100 * ($invert_controls ? -1 : 1)))
     }
   
     function decrementSteering() {
       if ($gamepad_input) {
         return;
       }
-      input_steering.update((n) => Math.max(n-$input_increment, -100))
+      input_steering.update((n) => Math.max(n-($input_increment * ($invert_controls ? -1 : 1)), -100 * ($invert_controls ? -1 : 1)))
     }
   
     function stopAll() {
@@ -73,6 +73,11 @@
       }
       camera_pan.set(0);
       camera_tilt.set(0);
+    }
+
+    function toggleInvert() {
+      invert_controls.set(!($invert_controls));
+      stopAll();
     }
 
     function onKeyDown(e) {
@@ -152,8 +157,15 @@
       Inputs:
       <ul>
         <li>Throttle: {Math.round($input_throttle)}%</li>
-        <li>Steering: {Math.round($input_steering)}%</li>
+        <li>Steering: {Math.round($input_steering) * ($invert_controls ? -1 : 1)}%</li>
       </ul>
+      <button
+        on:click={toggleInvert}
+        class="bg-gray-800 col-start-2 p-2 rounded-lg text-center hover:bg-gray-700">
+        Toggle Invert:
+        <br>
+        {$invert_controls}
+      </button>
     </div>
 
     <div class="grid grid-cols-3 grid-rows-3 gap-2 right-0">
