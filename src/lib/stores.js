@@ -25,7 +25,7 @@ export const camera_pan = writable(0.0);
 export const camera_tilt = writable(0.0);
 export const cam_increment = writable(1.0);
 export const cam_pan_max = writable(85.0);
-export const cam_tilt_max = writable(85.0.0);
+export const cam_tilt_max = writable(85.0);
 
 export const joystick_deadzone = writable(0.05);
 export const joystick_left_invert = writable(true);
