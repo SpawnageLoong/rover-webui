@@ -45,25 +45,22 @@
     <div class="self-center basis-[30%]"><CameraCard /></div>
   </div>
 
-  <div class="basis-2/4 flex gap-4">
+  <div class="flex gap-4 place-content-center">
     <InputSelector />
-    <div class="flex flex-col gap-4">
-      <div class="bg-gray-600 rounded-xl shadow-lg px-4 py-2 text-xl">
-        <div class="grid grid-cols-2 grid-rows-1 gap-4 py-4">
-          <div class="text-center col-start-1 row-start-1">
-            Left
-            <PwmCard pwmVal={$pwm0} />
-          </div>
-          <div class="text-center col-start-2 row-start-1">
-            Right
-            <PwmCard pwmVal={$pwm3} />
-          </div>
+
+    <div class="bg-gray-600 rounded-xl shadow-lg px-4 py-2 text-xl">
+      <div class="grid grid-cols-2 grid-rows-1 gap-4 py-4">
+        <div class="text-center col-start-1 row-start-1">
+          Left
+          <PwmCard pwmVal={$pwm0} />
+        </div>
+        <div class="text-center col-start-2 row-start-1">
+          Right
+          <PwmCard pwmVal={$pwm3} />
         </div>
       </div>
     </div>
 
-    <div class="flex-auto flex flex-col gap-4">
-      <CameraFov />
-    </div>
+    <CameraFov />
   </div>
 </div>
