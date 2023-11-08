@@ -26,5 +26,10 @@
         <div class="p-2 rounded-md text-center text-white hover:bg-gray-600">
             Host: {$host}
         </div>
+        <a href="/driver">
+            <div class="p-2 rounded-md text-center text-white hover:bg-gray-600">
+                Driver View
+            </div>
+        </a>
     </div>
 </div>
