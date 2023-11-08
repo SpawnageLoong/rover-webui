@@ -2,7 +2,7 @@
   import { camera_pan, camera_tilt } from '$lib/stores.js';
 </script>
 
-<div class="flex bg-gray-600 rounded-xl shadow-lg px-4 py-2">
+<div class="flex bg-gray-600 rounded-xl shadow-lg px-4 py-2 min-w-[540px] items-center">
   <div class="text-xl flex flex-col basis-2/4 gap-2 w-28 items-center">
     Horizontal FoV:
     <svg width="200" height="200">
