@@ -12,6 +12,7 @@
 	import InputSelector from '$lib/components/inputSelector.svelte';
 	import PwmCard from '$lib/components/pwmCard.svelte';
   import CameraFov from '$lib/components/cameraFov.svelte';
+	import CameraCard from '$lib/components/cameraCard.svelte';
 
   onMount(() => {
     host.set(window.location.hostname)
@@ -39,12 +40,7 @@
 
 <div class="flex m-4 pt-4 gap-4">
   <div class="basis-2/4 flex flex-col gap-4">
-    <div class="bg-gray-600 p-4 rounded-xl shadow-lg aspect-video">
-      <img
-        src="http://{$host}:8081"
-        alt="Front camera stream"
-        class="object-scale-down">
-    </div>
+    <CameraCard />
     <InputSelector />
   </div>
 
